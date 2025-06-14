@@ -1,0 +1,23 @@
+name: Test
+run-name: Run tests
+on: [push]
+
+jobs:
+  test:
+    runs-on: [self-hosted]
+    steps:
+      - name: Descargar el repo
+        uses: actions/checkout@v4
+
+      - name: Usar nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Instalar dependencias
+        working-directory: ./calculadora
+        run: npm install
+
+      - name: Ejecutar pruebas
+        working-directory: ./calculadora
+        run: npm test
